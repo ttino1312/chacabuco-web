@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg:        #0a0a0a;
+    --bg-2:      #111111;
+    --surface:   #161616;
+    --surface-2: #1e1e1e;
+    --border:    rgba(255,255,255,0.07);
+    --border-h:  rgba(229,57,53,0.45);
+    --red:       #E53935;
+    --red-h:     #B71C1C;
+    --text-1:    #ffffff;
+    --text-2:    rgba(255,255,255,0.55);
+    --text-3:    rgba(255,255,255,0.30);
+    --radius:    0.5rem;
+
+    /* shadcn compat */
+    --background:   0 0% 4%;
+    --foreground:   0 0% 100%;
+    --card:         0 0% 9%;
+    --card-foreground: 0 0% 100%;
+    --popover:      0 0% 9%;
+    --popover-foreground: 0 0% 100%;
+    --primary:      0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary:    1 78% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted:        0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent:       0 74% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive:  1 78% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border-ring:  0 0% 15%;
+    --input:        0 0% 15%;
+    --ring:         1 78% 55%;
+  }
+}
+
+@layer base {
+  * { @apply border-[rgba(255,255,255,0.07)]; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0a0a0a;
+    color: #fff;
+    font-family: var(--font-geist-sans, system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
+    padding-left: 72px;
+  }
+  @media (max-width: 767px) {
+    body { padding-left: 0; padding-bottom: 80px; }
+  }
+
+  h1,h2,h3,h4,h5,h6 { color: #fff; }
+  p { color: rgba(255,255,255,0.55); }
+}
+
+/* ── Layout ── */
+@layer components {
+  .section-padding  { @apply py-16 md:py-24; }
+  .container-custom { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 text-sm font-bold
+           bg-[#E53935] hover:bg-[#B71C1C] active:scale-95
+           text-white px-5 py-2.5 rounded-lg
+           transition-all duration-200;
+    box-shadow: 0 4px 18px rgba(229,57,53,0.38);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 26px rgba(183,28,28,0.5); }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-sm font-semibold
+           bg-white/[0.07] border border-white/15
+           hover:bg-white/[0.13] hover:border-white/25 active:scale-95
+           text-white px-5 py-2.5 rounded-lg transition-all duration-200;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 text-sm font-semibold
+           border-2 border-[#E53935] text-[#E53935]
+           hover:bg-[#E53935] hover:text-white active:scale-95
+           px-5 py-2.5 rounded-lg transition-all duration-200;
+  }
+
+  /* ── Cards ── */
+  .card-dark {
+    @apply bg-[#161616] border border-white/[0.07] rounded-xl
+           transition-all duration-300;
+  }
+  .card-dark:hover {
+    border-color: rgba(229,57,53,0.4);
+    box-shadow: 0 8px 32px rgba(229,57,53,0.08);
+  }
+
+  /* ── Section headers ── */
+  .section-tag {
+    @apply inline-flex items-center gap-2 text-[#E53935] text-xs
+           font-bold uppercase tracking-widest mb-3;
+  }
+  .gradient-line { @apply w-14 h-[3px] bg-[#E53935] rounded-full; }
+
+  /* ── Form inputs ── */
+  .input-dark {
+    @apply w-full bg-white/[0.06] border border-white/10
+           rounded-lg px-4 py-2.5 text-sm text-white
+           placeholder-white/30
+           focus:outline-none focus:ring-2 focus:ring-[#E53935]/25
+           focus:border-[#E53935]/60 transition-all duration-200;
+  }
+  .label-sm {
+    @apply block text-xs font-bold uppercase tracking-wider
+           text-white/40 mb-1.5;
+  }
+
+  /* ── Page hero ── */
+  .page-hero {
+    @apply bg-[#111] relative overflow-hidden py-16;
+  }
+  .page-hero::after {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-[3px];
+    background: linear-gradient(to right, transparent, #E53935, transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .grid-dark {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .grid-red {
+    background-image:
+      linear-gradient(rgba(229,57,53,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(229,57,53,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+  .scrollbar-hide::-webkit-scrollbar { display:none; }
+  .text-dim-1 { color: rgba(255,255,255,0.85); }
+  .text-dim-2 { color: rgba(255,255,255,0.55); }
+  .text-dim-3 { color: rgba(255,255,255,0.30); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #E53935; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #B71C1C; }
+
+:focus-visible { outline: 2px solid #E53935; outline-offset: 2px; }
+
+/* ── Prose (article content) ── */
+.prose-school p    { color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 1rem; }
+.prose-school h2   { color: #fff; font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+.prose-school h3   { color: #fff; font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.prose-school ul   { list-style: disc; padding-left: 1.25rem; margin-bottom: 1rem; }
+.prose-school li   { color: rgba(255,255,255,0.6); margin-bottom: 0.25rem; }
+.prose-school a    { color: #E53935; text-decoration: underline; }
+.prose-school strong { color: #fff; font-weight: 600; }
+
+/* ── Skeleton loader ── */
+@keyframes skeleton-pulse { 0%,100%{opacity:.6} 50%{opacity:.25} }
+.skeleton { background: rgba(255,255,255,0.08); border-radius: 6px; animation: skeleton-pulse 1.5s ease-in-out infinite; }
+
+/* ── Reveal animation ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-1 { transition-delay: .1s; }
+.reveal-2 { transition-delay: .2s; }
+.reveal-3 { transition-delay: .3s; }
+.reveal-4 { transition-delay: .4s; }
